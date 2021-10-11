@@ -1,0 +1,57 @@
+<div class="field">
+    <label for="approvement-name">Name</label>
+    <input id="approvement-name" class="inputfield w-full" type="text" pInputText [(ngModel)]="approvement.name"/>
+</div>
+<div class="field">
+    <label for="approvement-description">Beschreibung</label>
+    <input id="approvement-description" class="inputfield w-full" type="text" pInputText
+           [(ngModel)]="approvement.description"/>
+</div>
+<div class="field">
+    <label for="approvement-approvers">Genehmiger</label>
+    <p-listbox id="approvement-approvers" [options]="approvers" [(ngModel)]="approvement.approvers"
+               [metaKeySelection]="false" [checkbox]="true" [filter]="false" [multiple]="true" optionValue="id"
+               class="inputfield w-full">
+        <ng-template let-approver pTemplate="item">
+            <div class="approver-item">
+                <div>{{approver.friendlyName}}</div>
+            </div>
+        </ng-template>
+    </p-listbox>
+</div>
+<div class="field">
+    <p-toggleButton class="inputfield w-full" [(ngModel)]="approvement.allApproversNeeded"
+                    onLabel="Alle Genehmiger müssen zustimmen" offLabel="Mindestens ein Genehmiger muss zustimmen"
+                    onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '100%'}" ></p-toggleButton>
+</div>
+<br>
+<p-divider align="left">
+    <div class="p-d-inline-flex p-ai-center">
+        <i class="pi pi-cog p-mr-2"></i>
+        <b> Aktionen</b>
+    </div>
+</p-divider>
+<div class="grid">
+    <p-button class="col" label="Zurücksetzen" (onClick)="onClear()" [style]="{'width': '100%'}"></p-button>
+    <p-button class="col" label="Absenden" (onClick)="onSubmit()" [style]="{'width': '100%'}"></p-button>
+</div>
+
+<p-toast position="bottom-center" key="client" (onClose)="onReject()" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div class="flex flex-column" style="flex: 1">
+            <div class="p-text-center">
+                <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+                <h4>{{message.summary}}</h4>
+                <p>{{message.detail}}</p>
+            </div>
+            <div class="grid p-fluid">
+                <div class="col-6">
+                    <button type="button" pButton (click)="onConfirm()" label="Ja" class="p-button-success"></button>
+                </div>
+                <div class="col-6">
+                    <button type="button" pButton (click)="onReject()" label="Nein" class="p-button-secondary"></button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
