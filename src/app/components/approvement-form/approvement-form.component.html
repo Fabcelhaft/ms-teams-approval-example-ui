@@ -8,7 +8,7 @@
            [(ngModel)]="approvement.description"/>
 </div>
 <div class="field">
-    <label for="approvement-approvers">Genehmiger</label>
+    <label for="approvement-approvers">Genehmiger:innen</label>
     <p-listbox id="approvement-approvers" [options]="approvers" [(ngModel)]="approvement.approvers"
                [metaKeySelection]="false" [checkbox]="true" [filter]="false" [multiple]="true" optionValue="id"
                class="inputfield w-full">
@@ -21,7 +21,7 @@
 </div>
 <div class="field">
     <p-toggleButton class="inputfield w-full" [(ngModel)]="approvement.allApproversNeeded"
-                    onLabel="Alle Genehmiger müssen zustimmen" offLabel="Mindestens ein Genehmiger muss zustimmen"
+                    onLabel="Alle Genehmiger:innen müssen zustimmen" offLabel="Mindestens ein Genehmiger:in muss zustimmen"
                     onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '100%'}" ></p-toggleButton>
 </div>
 <br>
